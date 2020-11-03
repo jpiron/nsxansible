@@ -78,7 +78,7 @@ def main():
 
     for searched_parameter in searched_parameters:
         if searched_parameter == 'cluster_name' and module.params[searched_parameter]:
-            object_mo = find_cluster_by_name_datacenter(datacenter_mo, module.params[searched_parameter])
+            object_mo = find_cluster_by_name(content, module.params[searched_parameter], datacenter_mo)
         elif searched_parameter and module.params[searched_parameter]:
             object_mo = get_mo(content, module.params[searched_parameter], VIM_TYPES[searched_parameter])
 
@@ -95,4 +95,3 @@ from ansible.module_utils.vmware import *
 
 if __name__ == '__main__':
     main()
-
