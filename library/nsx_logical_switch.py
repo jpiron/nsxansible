@@ -96,7 +96,7 @@ def main():
     elif len(lswitch_id) != 0 and 'present' in module.params['state']:
         lswitch_details=get_lswitch_details(client_session,lswitch_id[0])
         change_required=False
-        for lswitch_detail_key, lswitch_detail_value in lswitch_details['virtualWire'].iteritems():
+        for lswitch_detail_key, lswitch_detail_value in lswitch_details['virtualWire'].items():
             if lswitch_detail_key == 'name' and lswitch_detail_value != module.params['name']:
                 #TODO: Check the bellow line
                 lswitch_details['virtualWire']['name']=module.params['nsxmanager_spec']['name']
