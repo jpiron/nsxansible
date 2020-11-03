@@ -47,7 +47,7 @@ def main():
             vcenter=dict(required=True, type='str'),
             vcenter_user=dict(required=True, type='str'),
             vcenter_passwd=dict(required=True, type='str', no_log=True),
-	    license_key=dict(required=True, type='str', no_log=True)
+            license_key=dict(required=True, type='str', no_log=True)
         ),
         supports_check_mode=False
     )
@@ -71,4 +71,3 @@ from ansible.module_utils.basic import *
 
 if __name__ == '__main__':
     main()
-

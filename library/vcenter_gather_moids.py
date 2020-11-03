@@ -38,7 +38,7 @@ def get_mo(content, searchedname, vim_type_list):
     for object in mo:
         if object.name == searchedname:
             return object
-	elif re.search( searchedname, object.name ):
+        elif re.search( searchedname, object.name ):
             return object
     return None
 
