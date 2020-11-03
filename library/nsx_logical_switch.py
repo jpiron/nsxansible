@@ -89,11 +89,11 @@ def main():
     vdn_scope=retrieve_scope(module, client_session, module.params['transportzone'])
     lswitch_id=get_lswitch_id(client_session, module.params['name'], vdn_scope)
 
-    if len(lswitch_id) is 0 and 'present' in module.params['state']:
+    if len(lswitch_id) == 0 and 'present' in module.params['state']:
         ls_ops_response=create_lswitch(client_session, module.params['name'], module.params['description'],
                                        module.params['controlplanemode'], vdn_scope)
         module.exit_json(changed=True, argument_spec=module.params, ls_ops_response=ls_ops_response)
-    elif len(lswitch_id) is not 0 and 'present' in module.params['state']:
+    elif len(lswitch_id) != 0 and 'present' in module.params['state']:
         lswitch_details=get_lswitch_details(client_session,lswitch_id[0])
         change_required=False
         for lswitch_detail_key, lswitch_detail_value in lswitch_details['virtualWire'].iteritems():
@@ -112,7 +112,7 @@ def main():
             module.exit_json(changed=True, argument_spec=module.params, ls_ops_response=ls_ops_response)
         else:
             module.exit_json(changed=False, argument_spec=module.params)
-    elif len(lswitch_id) is not 0 and 'absent' in module.params['state']:
+    elif len(lswitch_id) != 0 and 'absent' in module.params['state']:
         ls_ops_response=delete_lswitch(client_session, lswitch_id[0])
         module.exit_json(changed=True, argument_spec=module.params, ls_ops_response=ls_ops_response)
     else:
