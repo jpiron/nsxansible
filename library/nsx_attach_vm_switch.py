@@ -36,8 +36,8 @@ def get_logical_switch(client_session, logical_switch_name):
 
 
 def attach_vm_to_portgroup(client_session, object_moid, portgroup_id, device_number):
-    attach = {'com.vmware.vshield.vsm.inventory.dto.VnicDto': {'objectId': object_moid + '.000',
-                                                               'vnicUuid': object_moid + device_number,
+    attach = {'com.vmware.vshield.vsm.inventory.dto.VnicDto': {'objectId': object_moid + '.' + device_number,
+                                                               'vnicUuid': object_moid + '.' + device_number,
                                                                'portgroupId': portgroup_id}}
     return client_session.create('logicalSwitchVmAttach', request_body_dict=attach)
 
